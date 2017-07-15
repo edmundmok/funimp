@@ -57,7 +57,7 @@ for file in `find . -type f -name \*.swift`; do
         echo $line | grep -q -m 1 -F "import "
         if [[ $? -eq 0 ]]; then
             # Check this import (comment it out and try compile)
-            sed -i "" "${LINE_NUM}s|${line}|${COMMENTED_LINE}|" ${file}
+            sed -i "" "${LINE_NUM}s|.*|${COMMENTED_LINE}|" ${file}
 
             # Build and time
             SECONDS=0
@@ -97,7 +97,7 @@ for file in `find . -type f -name \*.swift`; do
             fi
 
             # Uncomment import
-            sed -i "" "${LINE_NUM}s|${COMMENTED_LINE}|${line}|" ${file}
+            sed -i "" "${LINE_NUM}s|.*|${line}|" ${file}
         fi
     done < $file
 done
