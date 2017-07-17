@@ -52,8 +52,4 @@ RET_VAL=$?
 rm ${temp_file}
 rm -rf ${temp_dir}
 
-get_return() {
-	return $1
-}
-
-get_return $RET_VAL
+exit $RET_VAL
